@@ -1,4 +1,5 @@
 use std::io::BufRead;
+
 use crate::count::Count;
 
 pub mod count;
@@ -16,4 +17,19 @@ pub fn count(reader: &mut dyn BufRead) -> Count {
         }
     }
     count
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_count() {
+        let mut reader = "Hello, world!".as_bytes();
+        let count = count(&mut reader);
+        assert_eq!(count.lines, 1);
+        assert_eq!(count.words, 2);
+        assert_eq!(count.bytes, 14);
+        assert_eq!(count.max_digits(), 2);
+    }
 }

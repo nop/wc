@@ -6,6 +6,7 @@
 
 use std::fs::File;
 use std::io::BufReader;
+
 use libwc::count::Count;
 
 fn main() -> std::io::Result<()> {
